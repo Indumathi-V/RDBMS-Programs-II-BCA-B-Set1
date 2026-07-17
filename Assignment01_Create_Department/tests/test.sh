@@ -2,13 +2,17 @@
 
 set -e
 
-mysql -h127.0.0.1 -P3306 -uroot -proot < solution.sql
+MYSQL="mysql -h127.0.0.1 -P3306 -uroot -proot"
 
-mysql -h127.0.0.1 -P3306 -uroot -proot -e "
+$MYSQL < solution.sql
+
+$MYSQL -e "
 USE CollegeDB;
-SHOW TABLES;
+DESCRIBE Department;
 " > output.txt
 
-grep -q "Department" output.txt
+grep -q DepartmentID output.txt
+grep -q DepartmentName output.txt
+grep -q HOD output.txt
 
-echo "PASS"
+echo "✓ Assignment 1 Passed"
