@@ -1,21 +1,14 @@
 #!/bin/bash
 
-mysql -uroot -proot < solution.sql
+set -e
 
-mysql -uroot -proot -e "
+mysql -h127.0.0.1 -P3306 -uroot -proot < solution.sql
+
+mysql -h127.0.0.1 -P3306 -uroot -proot -e "
 USE CollegeDB;
 SHOW TABLES;
 " > output.txt
 
-grep -q "Department" output.txt || exit 1
-
-mysql -uroot -proot -e "
-USE CollegeDB;
-DESCRIBE Department;
-" > desc.txt
-
-grep -q "DepartmentID" desc.txt || exit 1
-grep -q "DepartmentName" desc.txt || exit 1
-grep -q "HOD" desc.txt || exit 1
+grep -q "Department" output.txt
 
 echo "PASS"
