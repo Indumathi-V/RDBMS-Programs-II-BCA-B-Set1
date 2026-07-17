@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS CollegeDB;
+CREATE DATABASE CollegeDB;
+USE CollegeDB;
 -- Create Marksheet table
 
 -- Insert sample records
